@@ -2,6 +2,15 @@
 precision mediump float;
 #endif
 
+/*
+Shaping Functions
+NILBOGtheSavior
+
+This is a shader that maps several shaping functions on a exponential scale from 0.5 to 3.5 based on u_mouse coordinates.
+
+*/
+
+
 #define PI 3.14159265359
 
 uniform vec2 u_resolution;

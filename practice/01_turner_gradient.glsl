@@ -2,6 +2,14 @@
 precision mediump float;
 #endif
 
+/*
+Turner Gradient
+NILBOGtheSavior
+
+This is a gradient based on the painting by William Turner, 'The Fighting Temeraire'. sin(u_time) to blend between the day and night cycle.
+
+*/
+
 #define PI 3.14159265359
 
 uniform vec2 u_resolution;
