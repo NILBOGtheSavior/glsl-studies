@@ -15,8 +15,17 @@ float plot(vec2 uv, float pct){
 
 void main() {
     vec2 uv = gl_FragCoord.xy/u_resolution * 2. - 1.;
+    uv.x *= u_resolution.x / u_resolution.y;
 
     float deg = u_mouse.x / u_resolution.x * 3. + 0.5; // Sets degree on a scale of 0.5 - 3.5 based on mouse x coord
+
+    float lineThickness = 0.0025;
+
+    float axisX = 1. - step(lineThickness, abs(uv.x)); // vertical line
+    float axisY = 1. - step(lineThickness, abs(uv.y)); // horizontal line
+
+    float axis = max(axisX, axisY);
+    vec3 axisColor = vec3(axis); // white lines
 
     float x = sin(uv.x);
 
@@ -32,13 +41,19 @@ void main() {
     float pct_flat_top = plot(uv, flat_top);
     float pct_wave = plot(uv, wave);
 
-    vec3 color = vec3(u_mouse.x / u_resolution.x) / 4.;
+    //float axis = plot(uv, );
+
+    vec3 color = vec3(0.);
 
     color = (1.0-pct_pulse)*color+pct_pulse*vec3(0.,1.,0.);
     color = (1.0-pct_spike)*color+pct_spike*vec3(1.,0.,0.);
     color = (1.0-pct_bell)*color+pct_bell*vec3(0.,0.,1.);
     color = (1.0-pct_flat_top)*color+pct_flat_top*vec3(1.,0.,1.);
     color = (1.0-pct_wave)*color+pct_wave*vec3(1.,1.,0.);
+
+    color += axisColor;
+
+    //color = (1.0-axis)*color+axis*vec3(1.,1.,1.);
 
     gl_FragColor = vec4(color,1.0);
 }
