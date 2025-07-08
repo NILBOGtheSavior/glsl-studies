@@ -12,6 +12,7 @@ This is a shader that draws a ROYGBIV rainbow on the screen.
 
 uniform vec2 u_resolution;
 
+// I'm colorblind so the colors may not be accurate
 vec3 red = vec3(1., 0., 0.);
 vec3 orange = vec3(1., 0.5, 0.);
 vec3 yellow = vec3(1., 1., 0.);
